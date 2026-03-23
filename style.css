@@ -1,0 +1,865 @@
+
+ 
+    * {
+  box-sizing: border-box;
+}
+ 
+ body {
+  background: radial-gradient(
+      1000px 600px at 10% 0%,
+      rgba(34, 211, 238, 0.08),
+      transparent
+    ),
+    radial-gradient(
+      900px 500px at 90% 10%,
+      rgba(108, 99, 255, 0.1),
+      transparent
+    ),
+    #0f1115;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* لمنع أي سكرول عرضي بالغلط */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin-top: 10px;
+  margin-left: 35px;
+  margin-right: 35px;
+  flex-wrap: wrap; /* للسماح بالعناصر بالنزول في الشاشات الصغيرة */
+}
+
+nav p {
+  color: white;
+  font-size: 50px;
+  margin: 10px 0;
+  animation-name: my_portofoli;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  transform: translateX(-100px);
+  opacity: 0;
+}
+
+@keyframes my_portofoli {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.txt_1 {
+  color: #10b981;
+  font-size: 60px;
+}
+
+.links {
+  background: #22d3ee17;
+  backdrop-filter: blur(10px);
+  padding: 15px 20px;
+  border-radius: 30px;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  z-index: 1000;
+  animation: containerUp 0.5s ease-out forwards;
+  white-space: nowrap;
+}
+
+@keyframes containerUp {
+  from {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* زرار القائمة مخفي في الشاشات الكبيرة */
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.links a {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  margin: 0 13px;
+  font-size: 30px;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(70px);
+  animation: slideUp 0.4s ease forwards;
+}
+
+.links a:nth-child(1) { animation-delay: 0.4s; }
+.links a:nth-child(2) { animation-delay: 0.6s; }
+.links a:nth-child(3) { animation-delay: 0.8s; }
+.links a:nth-child(4) { animation-delay: 1s; }
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background-color: #10b981;
+  transition: width 0.3s ease;
+}
+
+.links a:hover::after {
+  width: 100%;
+}
+
+.log_in a {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-size: 30px;
+  margin: 5px;
+  border-radius: 30px;
+  padding: 10px 15px;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(70px);
+  animation: slideUp 0.4s ease forwards;
+}
+
+.log_in a:nth-child(1) { animation-delay: 1.2s; }
+.log_in a:nth-child(2) { animation-delay: 1.4s; }
+
+.log_in a span {
+  position: relative;
+}
+
+.log_in a span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background-color: #10b981;
+  transition: width 0.3s ease;
+}
+
+.log_in a:hover {
+  background: #22d3ee17;
+  backdrop-filter: blur(10px);
+}
+
+.log_in a:hover span::after {
+  width: 100%;
+}
+
+/* ------------------- About Section ------------------- */
+main{
+    position: relative;
+}
+.about_me {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 200px;
+  margin-left: 10%;
+  margin-right: 10%;
+  align-items: center;
+  gap: 40px;
+}
+
+.about_me img {
+  width: 400px;
+  height: 400px;
+  max-width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 1);
+  opacity: 0;
+  transform: scale(0.5);
+  animation: growIn 0.3s ease-out 0.5s forwards;
+}
+
+@keyframes growIn {
+  0% { opacity: 0; transform: scale(0.5); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.about_me div {
+  flex: 1;
+}
+
+.txt_2 {
+  color: white;
+  font-size: 30px;
+  animation-name: txt_2;
+  animation-delay: 0.3s;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  transform: translateY(-100px);
+  opacity: 0;
+}
+
+@keyframes txt_2 {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.about_me h1 {
+  color: white;
+  font-size: 60px;
+  margin: 10px 0;
+  animation-name: Ahmed;
+  animation-delay: 0.5s;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  transform: translateX(-100px);
+  opacity: 0;
+}
+
+@keyframes Ahmed {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.txt_3 {
+  color: white;
+  font-size: 30px;
+  animation-name: txt_3;
+  animation-delay: 0.3s;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  transform: translateY(100px);
+  opacity: 0;
+}
+
+@keyframes txt_3 {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.txt_3 span {
+  color: #10b981;
+  font-size: 35px;
+}
+
+.fics_mu {
+  color: white;
+  font-size: 19px;
+  font-family: sans-serif;
+  animation-name: fics_mu;
+  animation-delay: 0.6s;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  transform: translateY(100px);
+  opacity: 0;
+}
+@keyframes fics_mu {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Social Cards */
+.card {
+  width: fit-content;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 15px 0;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.socialContainer {
+  width: 52px;
+  height: 52px;
+  background-color: #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 30px;
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: slide-in-left 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.containerOne { animation-delay: 0.12s; }
+.containerOne:hover { background-color: #c10101; transform: scale(1.2); }
+
+.containerTwo { animation-delay: 0.28s; }
+.containerTwo:hover { background-color: #00acee; transform: scale(1.2); }
+
+.containerThree { animation-delay: 0.44s; }
+.containerThree:hover { background-color: #015a8a; transform: scale(1.2); }
+
+.containerFour { animation-delay: 0.6s; }
+.containerFour:hover { background-color: #00ff59; transform: scale(1.2); }
+
+.socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: 0.3s;
+}
+
+.socialSvg { width: 17px; }
+.socialSvg path { fill: rgb(255, 255, 255); }
+
+.socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+
+@keyframes slide-in-top {
+  0% { transform: translateY(-50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ------------------- Skills Section ------------------- */
+.skills {
+  background: #15203875;
+  padding-bottom: 80px;
+  border-radius: 50px;
+  margin: 60px 5%;
+}
+
+.txt_4 {
+  padding-top: 50px;
+  color: white;
+  font-size: 70px; /* تصغير قليل ليناسب الشاشات */
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* جعل الشبكة متجاوبة */
+  gap: 30px;
+  padding: 0 20px;
+  place-items: center;
+}
+
+.skill_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 250px;
+  aspect-ratio: 1/1; /* للحفاظ على الشكل المربع */
+  border: 2px solid transparent;
+  background: #12444b74;
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.skill_box img {
+  max-width: 60%;
+  height: auto;
+}
+
+.txt_5 {
+  font-size: 24px;
+  color: white;
+  max-width: 800px;
+  width: 90%;
+  text-align: center;
+  margin: 50px auto 0px auto;
+  line-height: 1.6;
+}
+
+/* ------------------- Projects Section ------------------- */
+.project {
+  margin: 60px 5%;
+}
+
+.project > p {
+  color: white;
+  text-align: center;
+  font-size: 60px;
+  margin-bottom: 50px;
+}
+
+.project_photo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* جعل الشبكة متجاوبة */
+  gap: 40px;
+  place-items: center;
+}
+
+.project_box {
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 350px;
+  background: #12444b74;
+  flex-direction: column;
+  border-radius: 30px;
+  box-sizing: border-box;
+}
+
+.project_box img {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 10px;
+  box-shadow: 8px 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+.links_img {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.project_box a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  background-color: #0f1115;
+  padding: 10px 20px;
+  border-radius: 15px;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.project_box a:hover {
+  background-color: #10b981;
+}
+
+.project_box p {
+  color: white;
+  font-size: 18px;
+  margin-top: 30px;
+  width: 100%;
+  text-align: left;
+  line-height: 1.4;
+}
+
+/* Animations Triggered by JS */
+.skill_box,
+.project_box {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 0.8s ease;
+}
+
+.skill_box.active,
+.project_box.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scrollTopBtn{
+    display: none;
+}
+
+/* ------------------- Footer ------------------- */
+
+/* ------------------- Footer ------------------- */
+
+
+/* ========================================================
+   Responsive Media Queries (لجعل الموقع يتوافق مع كل الشاشات)
+   ======================================================== */
+
+/* للأجهزة اللوحية (Tablets) والشاشات المتوسطة */
+  
+@media (max-width: 992px) {
+
+  
+ @keyframes slideDownEntrance {
+    0% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 🌟 2. أنيميشن الدخول من الشمال (لزرار القائمة) 🌟 */
+  @keyframes slideInLeftEntrance {
+    0% { opacity: 0; transform: translateX(-40px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
+  /* 🌟 3. أنيميشن الدخول من اليمين (لزرار اللوجين) - وده المطلوب 🌟 */
+  @keyframes slideInRightEntrance {
+    0% { 
+      opacity: 0; 
+      /* بيبدأ من اليمين بره مكانه بـ 40 بيكسل */
+      transform: translateX(40px); 
+    }
+    100% { 
+      opacity: 1; 
+      /* بيرجع لمكانه الطبيعي */
+      transform: translateX(0); 
+    }
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-left: 15px; 
+    margin-right: 10px; 
+  }
+
+  /* 1. اللوجو (بينزل من فوق) */
+  nav p {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    order: 1; 
+    /* تم تغيير الأنيميشن لـ slideDownEntrance */
+    animation: slideDownEntrance 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  }
+
+  /* 2. زرار القائمة (بييجي من الشمال) */
+  .menu-btn {
+    display: block;
+    order: 2; 
+    opacity: 0; 
+    /* تم تغيير الأنيميشن لـ slideInLeftEntrance */
+    animation: slideInLeftEntrance 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards 0.2s;
+  }
+
+  /* 3. اللوجين (الصندوق نفسه هيكون ظاهر وثابت) */
+  .log_in {
+    order: 3; 
+    margin-left: auto !important; 
+    opacity: 1 !important; 
+    animation: none !important; /* شيلنا الأنيميشن من الصندوق */
+    display: flex; /* عشان الزراير تترتب صح جواه */
+  }
+
+  /* 🌟 الزراير نفسها 🌟 */
+  .log_in a {
+    /* شيلنا !important من الإخفاء عشان الأنيميشن يقدر يظهرهم */
+    opacity: 0; 
+    transform: translateX(40px); 
+    
+    /* الأنيميشن اللي هيحركهم من اليمين ويظهرهم */
+    animation: slideInRightEntrance 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards !important;
+  }
+
+  /* الزرار الأول (Log in) هيتأخر 0.2 ثانية ويدخل */
+  .log_in a:nth-child(1) {
+    animation-delay: 0.2s !important;
+  }
+
+  /* الزرار التاني (Sign up) هيتأخر 0.4 ثانية عشان يدخل بعده */
+  .log_in a:nth-child(2) {
+    animation-delay: 0.4s !important;
+  }
+  /* ---------------- باقي الكود بتاع العنصر الوهمي واللينكات سيبه زي ما هو ---------------- */
+  
+  
+   
+  /* ---------------- باقي الكود بتاع العنصر الوهمي واللينكات سيبه زي ما هو ---------------- */
+  
+  nav::after {
+    content: "";
+    width: 100%;
+    order: 4;
+  }
+  /* 🌟 التريك هنا: بنعمل عنصر وهمي ياخد العرض كله عشان يجبر اللينكات تنزل سطر جديد 🌟 */
+  
+
+  /* 4. اللينكات */
+  /* 4. اللينكات (وهي مقفولة) */
+  .links {
+    order: 5; 
+    
+    width: fit-content; 
+    min-width: 150px; 
+    margin-right: auto; 
+    
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    
+    background: #22d3ee17;
+    backdrop-filter: blur(10px);
+    border-radius: 20px; 
+    
+    position: relative !important; 
+    left: auto !important; 
+    
+    /* 🌟 التعديل لعمل الترانزيشن: تبدأ وهي مرفوعة لفوق شوية ومخفية 🌟 */
+    transform: translateY(-20px) !important; 
+    animation: none !important; 
+    white-space: normal; 
+    
+    max-height: 0;
+    opacity: 0;
+    padding: 0 20px; /* خلينا البادينج اليمين والشمال موجود عشان العرض ميتغيرش فجأة */
+    visibility: hidden;
+    overflow: hidden; 
+    
+    /* 🌟 الترانزيشن الناعم لكل الخصائص 🌟 */
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+    margin-top: 0;
+  }
+
+  /* شكل اللينكات لما نضغط على الزرار (وهي مفتوحة) */
+  .links.show_links {
+    max-height: 400px; 
+    opacity: 1;
+    visibility: visible;
+    padding: 20px 20px; 
+    margin-top: 20px;
+    
+    /* 🌟 تنزل لمكانها الطبيعي بانسيايبة 🌟 */
+    transform: translateY(0) !important; 
+  }
+
+  /* تظبيط اللينكات نفسها */
+  /* 🌟 1. تظبيط مساحة اللينكات نفسها في الموبايل 🌟 */
+  .links a {
+    position: relative !important;
+    display: inline-block !important; 
+    width: fit-content !important;
+    margin: 12px 0 !important;
+    padding-bottom: 5px !important; /* مساحة أمان عشان الخط يترسم جواها */
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* 🌟 2. إعادة رسم الخط الأخضر في الموبايل عشان ميتقصش 🌟 */
+  .links a::after,
+  .log_in a span::after {
+    content: "" !important;
+    position: absolute !important;
+    left: 0 !important;
+    bottom: 0 !important; /* 🔴 السر هنا: 0 بدل -5 عشان يترسم جوه اللينك والـ overflow ميقصوش */
+    width: 0 !important;
+    height: 2px !important;
+    background-color: #10b981 !important;
+    transition: width 0.3s ease !important;
+  }
+
+  /* 🌟 3. إظهار الخط عند الهوفر (أو اللمس) 🌟 */
+  .links a:hover::after,
+  .log_in a:hover span::after {
+    width: 100% !important;
+  }
+
+  /* ------------------- باقي كودك زي ما هو ------------------- */
+  .about_me {
+    flex-direction: column-reverse;
+    text-align: center;
+    margin-top: 60px;
+  }
+  
+  .card {
+    justify-content: center;
+    margin: 0 auto;
+  }
+}
+
+/* للهواتف المحمولة (Mobile Phones) */
+
+@media (max-width: 768px) {
+  
+  /* لازم ندي ده عرض 100% ونشيل أي هوامش بتزقه */
+  .skills_arrang {
+    width: 100%;
+    margin: 0 auto;
+    display: block; 
+  }
+.fics_mu {
+    white-space: normal;         /* غيرناها لـ normal عشان نتحكم في التوزيع أحسن */
+    word-wrap: break-word; 
+    width: 100% !important;      /* خليه ياخد عرض الحاوية بتاعته بالكامل */
+    max-width: 100% !important;  /* عشان ميبقاش مقصوص */
+    margin: 20px 0 !important;   /* مسافة فوق وتحت عشان ميزنقش في اللي قبله */
+    text-align: center;          /* السحر هنا: الكلام هيتسنتر تحت بعضه */
+    font-size: 19px !important;  
+    line-height: 1.6;            /* بيخلي فيه مسافة مريحة بين السطور */
+    display: block !important;
+}
+  
+  .images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    width: 100%;
+    gap: 15px; 
+    padding: 0; 
+    margin: 0 auto; 
+    justify-items: center; 
+    align-items: center;
+  }
+
+  .skills {
+    height: auto !important;
+    min-height: 600px;
+    width: 90% !important; /* نضمن إنه مش أكبر من الشاشة */
+    margin: 40px auto !important;
+}
+  .skill_box {
+    width: 90%; height: 150px; 
+    max-width: 150px;
+    aspect-ratio: 1/1; 
+    padding: 10px; 
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .skill_box img {
+    max-width: 70%;
+    height: auto;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  nav {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    width: calc(100% - 20px); /* عشان يفضل جوه الشاشة */
+}
+
+  nav p {
+    font-size: 35px;
+  }
+  .txt_1 {
+    font-size: 40px;
+  }
+
+  .log_in a {
+    font-size: 20px;
+    padding: 8px 12px; /* تصغير الزرار شوية عشان يناسب الموبايل */
+  }
+
+  
+  .about_me h1 {
+    font-size: 45px;
+  }
+
+  .txt_2, .txt_3 {
+    font-size: 24px;
+  }
+
+  .txt_4, .project > p {
+    font-size: 45px;
+  }
+
+  .txt_5 {
+    font-size: 18px;
+  }
+
+  .about_me img {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* للهواتف الصغيرة جداً */
+@media (max-width: 480px) {
+  .links a {
+    font-size: 16px;
+  }
+  
+  .about_me h1 {
+    font-size: 35px;
+  }
+  
+  .txt_2, .txt_3 {
+    font-size: 20px;
+  }
+  
+  .txt_3 span {
+    font-size: 24px;
+  }}
+
+  @media (max-width: 768px) {
+  
+  /* الحاوية (مخفية في البداية لحد ما تعمل سكرول) */
+  .scrollTopBtn {
+    display: block; /* نرجعه يشتغل تاني في الموبايل */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* تنسيق الزرار الدائري (الشادو الأسود الناعم اللي اتفقنا عليه) */
+  .scrollTopBtn a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px; /* حجم أصغر متناسق مع الموبايل */
+    height: 45px;
+    background-color: #10b981;
+    color: white;
+    text-decoration: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* شادو أسود شيك */
+    transition: all 0.3s ease;
+  }
+
+  /* تنسيق أيقونة الـ SVG */
+  .scrollTopBtn a svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* تأثير الضغطة (Hover/Active) للموبايل */
+  .scrollTopBtn a:active,
+  .scrollTopBtn a:hover {
+    background-color: #0d9668;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+    transform: translateY(-2px);
+  }
+
+  /* الكلاس اللي الجافاسكريبت هيضيفه لما تنزل لتحت */
+  .scrollTopBtn.show_btn {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+
+
+footer {
+    margin-top: 50px;
+    background-color: #1e293b;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
