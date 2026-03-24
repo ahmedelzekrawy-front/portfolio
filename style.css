@@ -1,10 +1,8 @@
 * {
-
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent; /* ده السطر اللي بيلغي المربع الأزرق في الموبايل */
   outline: none; /* عشان تتأكد إن مفيش إطارات تظهر عند الضغط */
 }
-
 
 body {
   background: radial-gradient(
@@ -62,6 +60,7 @@ nav p {
   font-size: 50px;
   align-items: center;
 }
+
 .log_in {
     display: flex;
     align-items: center; /* دي اللي بتسنترهم مع بعض بالطول بالظبط */
@@ -145,6 +144,9 @@ nav p {
   width: 100%;
 }
 
+/* ---------------------------------------------------- */
+/* الأزرار بتاعت تسجيل الدخول والسويتش (الأنيميشن الجديد) */
+/* ---------------------------------------------------- */
 .log_in a {
   position: relative;
   color: white;
@@ -154,39 +156,24 @@ nav p {
   border-radius: 30px;
   padding: 10px 15px;
   display: inline-block;
-  opacity: 0; /* يبدأ مختفي تماماً */
-  transform: translateY(70px); /* يبدأ من أسفل */
-  animation: slideUp 0.5s ease-out forwards; /* مدة الحركة نفسها */
 }
 
-
-.log_in a:nth-child(1) { animation-delay: 1.2s; }
-.log_in a:nth-child(2) { animation-delay: 1.4s; }
 .log_in a span {
   position: relative;
 }
 
-/* 1. التأكد من الحالة الابتدائية للزرارين (مختفي وتحت) */
-
-/* 2. تحكم دقيق في ترتيب الظهور */
-
-/* زرار Login - يظهر أول واحد فيهم */
-.log_in a:nth-of-type(1) {
-  animation-delay: 0.8s; /* يبدأ بعد 0.8 ثانية من تحميل الصفحة */
+/* الأنيميشن يتطبق على أي عنصر جوه log_in */
+.log_in > * {
+  opacity: 0; 
+  transform: translateY(70px); 
+  animation: slideUp 0.5s ease-out forwards; 
 }
 
-/* زرار Sign up - لن يبدأ إلا بعد ظهور الزرار الأول */
-.log_in a:nth-of-type(2) {
-  animation-delay: 1.3s; /* فرق نصف ثانية كاملة عن الأول لضمان الترتيب */
-}
+/* ترتيب الظهور (السويتش ثم لوج إن ثم ساين أب) */
+.log_in > *:nth-child(1) { animation-delay: 0.8s; }
+.log_in > *:nth-child(2) { animation-delay: 1.0s; }
+.log_in > *:nth-child(3) { animation-delay: 1.2s; }
 
-/* تأكد من وجود الـ keyframes في ملفك */
-@keyframes slideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 /* تأثير الوقوف بالماوس على الزرارين */
 .log_in a:hover {
   background: rgba(34, 211, 238, 0.09); /* نفس درجة الشفافية اللي عندك */
@@ -208,6 +195,7 @@ nav p {
 .log_in a:hover span::after {
   width: 100%;
 }
+
 
 /* ------------------- About Section ------------------- */
 main{
@@ -581,19 +569,15 @@ footer {
     display: flex; 
   }
 
-  .log_in a {
+  .log_in > * {
     opacity: 0; 
     transform: translateX(40px); 
     animation: slideInRightEntrance 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards !important;
   }
 
-  .log_in a:nth-child(1) {
-    animation-delay: 0.2s !important;
-  }
-
-  .log_in a:nth-child(2) {
-    animation-delay: 0.4s !important;
-  }
+  .log_in > *:nth-child(1) { animation-delay: 0.2s !important; }
+  .log_in > *:nth-child(2) { animation-delay: 0.4s !important; }
+  .log_in > *:nth-child(3) { animation-delay: 0.6s !important; }
   
   nav::after {
     content: "";
@@ -873,14 +857,8 @@ footer {
         border: 2px solid #10b981 !important; /* تخنا الإطار شوية عشان يبقى واضح */
         backdrop-filter: none !important; /* لغينا تأثير الزجاج (البلور) فوق اللينك */
     }
+}
 
-  }
-
-  /* ========================================= */
-/* --- الوضع المضيء والسلايدر (النسخة النهائية) --- */
-/* ========================================= */
-
-/* 1. تصميم السلايدر (الزرار) */
 /* ========================================= */
 /* --- الوضع المضيء والسلايدر (النسخة النهائية الشاملة) --- */
 /* ========================================= */
@@ -947,10 +925,7 @@ body.light-mode footer {
 body.light-mode footer p, 
 body.light-mode footer span, 
 body.light-mode footer a { color: #022c22 !important; }
-body.light-mode .socialContainer {
-    background-color: #ecfdf5 !important; 
-    border: 1px solid #a7f3d0 !important;
-}
+
 /* حل مشكلة أيقونات التواصل في الوضع المضيء */
 body.light-mode .socialContainer {
     background-color: #ecfdf5 !important;
@@ -968,5 +943,5 @@ body.light-mode .socialContainer:hover {
 }
 
 body.light-mode .socialContainer:hover svg path {
-    fill: #ffffff !important; /* لما تقف عليها بالماوس تتحول لبيض */
+    fill: #ffffff !important; /* لما تقف عليها بالماوس تتحول لأبيض */
 }
