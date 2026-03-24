@@ -1,10 +1,12 @@
+* {
 
- 
-    * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; /* ده السطر اللي بيلغي المربع الأزرق في الموبايل */
+  outline: none; /* عشان تتأكد إن مفيش إطارات تظهر عند الضغط */
 }
- 
- body {
+
+
+body {
   background: radial-gradient(
       1000px 600px at 10% 0%,
       rgba(34, 211, 238, 0.08),
@@ -57,7 +59,18 @@ nav p {
 
 .txt_1 {
   color: #10b981;
-  font-size: 60px;
+  font-size: 50px;
+  align-items: center;
+}
+.log_in {
+    display: flex;
+    align-items: center; /* دي اللي بتسنترهم مع بعض بالطول بالظبط */
+    gap: 15px; /* دي بتعمل مسافة شيك بين السلايدر وزرار اللوج إن */
+}
+
+/* عشان نلغي الـ Margin القديم اللي كان في السلايدر وميبوظش المسافات */
+.theme-switch { 
+    margin-right: 0 !important; 
 }
 
 .links {
@@ -481,42 +494,35 @@ main{
 }
 
 /* ------------------- Footer ------------------- */
-
-/* ------------------- Footer ------------------- */
-
+footer {
+    margin-top: 50px;
+    background-color: #1e293b;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
 
 /* ========================================================
    Responsive Media Queries (لجعل الموقع يتوافق مع كل الشاشات)
    ======================================================== */
 
 /* للأجهزة اللوحية (Tablets) والشاشات المتوسطة */
-  
 @media (max-width: 992px) {
-
-  
  @keyframes slideDownEntrance {
     0% { opacity: 0; transform: translateY(-30px); }
     100% { opacity: 1; transform: translateY(0); }
   }
 
-  /* 🌟 2. أنيميشن الدخول من الشمال (لزرار القائمة) 🌟 */
   @keyframes slideInLeftEntrance {
     0% { opacity: 0; transform: translateX(-40px); }
     100% { opacity: 1; transform: translateX(0); }
   }
 
-  /* 🌟 3. أنيميشن الدخول من اليمين (لزرار اللوجين) - وده المطلوب 🌟 */
   @keyframes slideInRightEntrance {
-    0% { 
-      opacity: 0; 
-      /* بيبدأ من اليمين بره مكانه بـ 40 بيكسل */
-      transform: translateX(40px); 
-    }
-    100% { 
-      opacity: 1; 
-      /* بيرجع لمكانه الطبيعي */
-      transform: translateX(0); 
-    }
+    0% { opacity: 0; transform: translateX(40px); }
+    100% { opacity: 1; transform: translateX(0); }
   }
 
   nav {
@@ -529,148 +535,111 @@ main{
     margin-right: 10px; 
   }
 
-  /* 1. اللوجو (بينزل من فوق) */
   nav p {
     width: 100%;
     text-align: center;
     margin-bottom: 20px;
     order: 1; 
-    /* تم تغيير الأنيميشن لـ slideDownEntrance */
     animation: slideDownEntrance 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
   }
 
-  /* 2. زرار القائمة (بييجي من الشمال) */
   .menu-btn {
     display: block;
     order: 2; 
     opacity: 0; 
-    /* تم تغيير الأنيميشن لـ slideInLeftEntrance */
     animation: slideInLeftEntrance 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards 0.2s;
   }
 
-  /* 3. اللوجين (الصندوق نفسه هيكون ظاهر وثابت) */
   .log_in {
     order: 3; 
     margin-left: auto !important; 
     opacity: 1 !important; 
-    animation: none !important; /* شيلنا الأنيميشن من الصندوق */
-    display: flex; /* عشان الزراير تترتب صح جواه */
+    animation: none !important; 
+    display: flex; 
   }
 
-  /* 🌟 الزراير نفسها 🌟 */
   .log_in a {
-    /* شيلنا !important من الإخفاء عشان الأنيميشن يقدر يظهرهم */
     opacity: 0; 
     transform: translateX(40px); 
-    
-    /* الأنيميشن اللي هيحركهم من اليمين ويظهرهم */
     animation: slideInRightEntrance 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards !important;
   }
 
-  /* الزرار الأول (Log in) هيتأخر 0.2 ثانية ويدخل */
   .log_in a:nth-child(1) {
     animation-delay: 0.2s !important;
   }
 
-  /* الزرار التاني (Sign up) هيتأخر 0.4 ثانية عشان يدخل بعده */
   .log_in a:nth-child(2) {
     animation-delay: 0.4s !important;
   }
-  /* ---------------- باقي الكود بتاع العنصر الوهمي واللينكات سيبه زي ما هو ---------------- */
-  
-  
-   
-  /* ---------------- باقي الكود بتاع العنصر الوهمي واللينكات سيبه زي ما هو ---------------- */
   
   nav::after {
     content: "";
     width: 100%;
     order: 4;
   }
-  /* 🌟 التريك هنا: بنعمل عنصر وهمي ياخد العرض كله عشان يجبر اللينكات تنزل سطر جديد 🌟 */
-  
 
-  /* 4. اللينكات */
-  /* 4. اللينكات (وهي مقفولة) */
   .links {
     order: 5; 
-    
     width: fit-content; 
     min-width: 150px; 
     margin-right: auto; 
-    
     display: flex;
     flex-direction: column; 
     align-items: flex-start; 
-    
     background: #22d3ee17;
     backdrop-filter: blur(10px);
     border-radius: 20px; 
-    
     position: relative !important; 
     left: auto !important; 
-    
-    /* 🌟 التعديل لعمل الترانزيشن: تبدأ وهي مرفوعة لفوق شوية ومخفية 🌟 */
     transform: translateY(-20px) !important; 
     animation: none !important; 
     white-space: normal; 
-    
     max-height: 0;
     opacity: 0;
-    padding: 0 20px; /* خلينا البادينج اليمين والشمال موجود عشان العرض ميتغيرش فجأة */
+    padding: 0 20px; 
     visibility: hidden;
     overflow: hidden; 
-    
-    /* 🌟 الترانزيشن الناعم لكل الخصائص 🌟 */
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
     margin-top: 0;
   }
 
-  /* شكل اللينكات لما نضغط على الزرار (وهي مفتوحة) */
   .links.show_links {
     max-height: 400px; 
     opacity: 1;
     visibility: visible;
     padding: 20px 20px; 
     margin-top: 20px;
-    
-    /* 🌟 تنزل لمكانها الطبيعي بانسيايبة 🌟 */
     transform: translateY(0) !important; 
   }
 
-  /* تظبيط اللينكات نفسها */
-  /* 🌟 1. تظبيط مساحة اللينكات نفسها في الموبايل 🌟 */
   .links a {
     position: relative !important;
     display: inline-block !important; 
     width: fit-content !important;
     margin: 12px 0 !important;
-    padding-bottom: 5px !important; /* مساحة أمان عشان الخط يترسم جواها */
+    padding-bottom: 5px !important; 
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
   }
 
-  /* 🌟 2. إعادة رسم الخط الأخضر في الموبايل عشان ميتقصش 🌟 */
   .links a::after,
   .log_in a span::after {
     content: "" !important;
     position: absolute !important;
     left: 0 !important;
-    bottom: 0 !important; /* 🔴 السر هنا: 0 بدل -5 عشان يترسم جوه اللينك والـ overflow ميقصوش */
+    bottom: 0 !important; 
     width: 0 !important;
     height: 2px !important;
     background-color: #10b981 !important;
     transition: width 0.3s ease !important;
   }
 
-  /* 🌟 3. إظهار الخط عند الهوفر (أو اللمس) 🌟 */
   .links a:hover::after,
   .log_in a:hover span::after {
     width: 100% !important;
   }
 
-  /* ------------------- باقي كودك زي ما هو ------------------- */
   .about_me {
     flex-direction: column-reverse;
     text-align: center;
@@ -683,27 +652,24 @@ main{
   }
 }
 
-/* للهواتف المحمولة (Mobile Phones) */
-
+/* للهواتف المحمولة (Mobile Phones) تم التجميع هنا */
 @media (max-width: 768px) {
   
-  /* لازم ندي ده عرض 100% ونشيل أي هوامش بتزقه */
   .skills_arrang {
     width: 100%;
     margin: 0 auto;
     display: block; 
   }
-.fics_mu {
-    white-space: normal;         /* غيرناها لـ normal عشان نتحكم في التوزيع أحسن */
-    word-wrap: break-word; 
-    width: 100% !important;      /* خليه ياخد عرض الحاوية بتاعته بالكامل */
-    max-width: 100% !important;  /* عشان ميبقاش مقصوص */
-    margin: 20px 0 !important;   /* مسافة فوق وتحت عشان ميزنقش في اللي قبله */
-    text-align: center;          /* السحر هنا: الكلام هيتسنتر تحت بعضه */
-    font-size: 19px !important;  
-    line-height: 1.6;            /* بيخلي فيه مسافة مريحة بين السطور */
-    display: block !important;
-}
+  
+  /* تنسيق فقرة اسم الكلية بعد تحويلها لـ p */
+  .fics_mu {
+    width: 100%;      
+    margin: 20px 0;   
+    text-align: center;         
+    font-size: 19px;  
+    line-height: 1.6;            
+    display: block;
+  }
   
   .images {
     display: grid;
@@ -717,13 +683,15 @@ main{
   }
 
   .skills {
-    height: auto !important;
+    height: auto;
     min-height: 600px;
-    width: 90% !important; /* نضمن إنه مش أكبر من الشاشة */
-    margin: 40px auto !important;
-}
+    width: 90%; 
+    margin: 40px auto;
+  }
+  
   .skill_box {
-    width: 90%; height: 150px; 
+    width: 90%; 
+    height: 150px; 
     max-width: 150px;
     aspect-ratio: 1/1; 
     padding: 10px; 
@@ -735,30 +703,26 @@ main{
     max-width: 70%;
     height: auto;
   }
-}
-
-
-@media (max-width: 768px) {
 
   nav {
-    margin-left: 10px !important;
-    margin-right: 10px !important;
-    width: calc(100% - 20px); /* عشان يفضل جوه الشاشة */
-}
+    margin-left: 10px;
+    margin-right: 10px;
+    width: calc(100% - 20px); 
+  }
 
   nav p {
     font-size: 35px;
   }
+  
   .txt_1 {
     font-size: 40px;
   }
 
   .log_in a {
     font-size: 20px;
-    padding: 8px 12px; /* تصغير الزرار شوية عشان يناسب الموبايل */
+    padding: 8px 12px; 
   }
 
-  
   .about_me h1 {
     font-size: 45px;
   }
@@ -779,6 +743,51 @@ main{
     width: 250px;
     height: 250px;
   }
+
+  /* الحاوية بتاعت السكرول */
+  .scrollTopBtn {
+    display: block; 
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .scrollTopBtn a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px; 
+    height: 45px;
+    background-color: #10b981;
+    color: white;
+    text-decoration: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); 
+    transition: all 0.3s ease;
+  }
+
+  .scrollTopBtn a svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .scrollTopBtn a:active,
+  .scrollTopBtn a:hover {
+    background-color: #0d9668;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+    transform: translateY(-2px);
+  }
+
+  .scrollTopBtn.show_btn {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
 }
 
 /* للهواتف الصغيرة جداً */
@@ -797,69 +806,124 @@ main{
   
   .txt_3 span {
     font-size: 24px;
-  }}
-
-  @media (max-width: 768px) {
-  
-  /* الحاوية (مخفية في البداية لحد ما تعمل سكرول) */
-  .scrollTopBtn {
-    display: block; /* نرجعه يشتغل تاني في الموبايل */
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(30px);
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-
-  /* تنسيق الزرار الدائري (الشادو الأسود الناعم اللي اتفقنا عليه) */
-  .scrollTopBtn a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 45px; /* حجم أصغر متناسق مع الموبايل */
-    height: 45px;
-    background-color: #10b981;
-    color: white;
-    text-decoration: none;
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* شادو أسود شيك */
-    transition: all 0.3s ease;
-  }
-
-  /* تنسيق أيقونة الـ SVG */
-  .scrollTopBtn a svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  /* تأثير الضغطة (Hover/Active) للموبايل */
-  .scrollTopBtn a:active,
-  .scrollTopBtn a:hover {
-    background-color: #0d9668;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
-    transform: translateY(-2px);
-  }
-
-  /* الكلاس اللي الجافاسكريبت هيضيفه لما تنزل لتحت */
-  .scrollTopBtn.show_btn {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
   }
 }
 
+/* --- كود الماوس الجديد --- */
+@media (min-width: 992px) {
+    body, a, button { cursor: none !important; }
 
+    .cursor {
+        width: 6px; height: 6px;
+        background-color: #10b981;
+        border-radius: 50%;
+        position: fixed; top: 0; left: 0;
+        pointer-events: none;
+        z-index: 10000;
+        transition: opacity 0.2s ease;
+    }
 
-footer {
-    margin-top: 50px;
-    background-color: #1e293b;
-    color: white;
-    text-align: center;
-    padding: 2rem 1rem;
-    width: 100%;
-    box-sizing: border-box;
+    .cursor-follower {
+        width: 36px; height: 36px;
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        background: rgba(16, 185, 129, 0.05);
+        backdrop-filter: blur(3px);
+        border-radius: 50%;
+        position: fixed; top: 0; left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        display: flex; justify-content: center; align-items: center;
+        transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, border 0.3s ease;
+    }
+
+    .cursor-text {
+        color: #0f1115;
+        font-size: 15px; font-weight: bold; letter-spacing: 1px;
+        opacity: 0; position: absolute; pointer-events: none;
+        transition: opacity 0.3s ease 0.1s;
+    }
+
+    .cursor-follower.active {
+        width: 50px; 
+        height: 50px;
+        background: transparent !important; /* خليناها شفافة عشان تبين الكلام */
+        border: 2px solid #10b981 !important; /* تخنا الإطار شوية عشان يبقى واضح */
+        backdrop-filter: none !important; /* لغينا تأثير الزجاج (البلور) فوق اللينك */
+    }
+
+  }
+
+  /* ========================================= */
+/* --- الوضع المضيء والسلايدر (النسخة النهائية) --- */
+/* ========================================= */
+
+/* 1. تصميم السلايدر (الزرار) */
+/* ========================================= */
+/* --- الوضع المضيء والسلايدر (النسخة النهائية الشاملة) --- */
+/* ========================================= */
+
+/* 1. تصميم السلايدر (الزرار) */
+.theme-switch { position: relative; display: inline-block; width: 54px; height: 28px; }
+.theme-switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #1e293b; transition: .4s; border: 1px solid rgba(16, 185, 129, 0.2); display: flex; align-items: center; justify-content: space-between; padding: 0 6px; border-radius: 34px; }
+.slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 3px; background-color: #10b981; transition: .4s; z-index: 2; border-radius: 50%; }
+.sun-icon, .moon-icon { width: 14px; height: 14px; z-index: 1; transition: .4s; }
+.sun-icon { color: #f59e0b; opacity: 0; }
+.moon-icon { color: #94a3b8; opacity: 1; }
+
+/* 2. تفاعل السلايدر عند التبديل */
+input:checked + .slider { background-color: #d1fae5; border-color: #a7f3d0; }
+input:checked + .slider:before { transform: translateX(24px); background-color: #065f46; }
+input:checked + .slider .sun-icon { opacity: 1; }
+input:checked + .slider .moon-icon { opacity: 0; }
+
+/* 3. ألوان الخلفية والنصوص (الوضع المضيء) */
+body.light-mode { 
+    background: radial-gradient(1000px 600px at 10% 0%, rgba(16, 185, 129, 0.15), transparent),
+                radial-gradient(900px 500px at 90% 10%, rgba(34, 211, 238, 0.15), transparent),
+                #fcfcfc !important; 
+    color: #022c22; 
 }
+
+body.light-mode nav p, 
+body.light-mode .links a, 
+body.light-mode p, 
+body.light-mode h1, 
+body.light-mode h2, 
+body.light-mode h3, 
+body.light-mode .fics_mu { color: #022c22; }
+
+/* 4. صناديق المشاريع والمهارات */
+body.light-mode .project_box { background: #d1fae5; border: 1px solid #a7f3d0; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.15); }
+body.light-mode .project_box p, 
+body.light-mode .skill_box p, 
+body.light-mode .txt_5 b { color: #065f46; }
+body.light-mode .project_box a { background-color: #426f60; color: white; }
+body.light-mode .project_box a:hover { background-color: #24a67d; }
+body.light-mode .links { background: rgba(209, 250, 229, 0.8); }
+
+/* 5. قسم الـ Skills وزر الـ Login */
+body.light-mode .log_in { display: flex; align-items: center; gap: 15px; } /* لضمان السنترة */
+body.light-mode .log_in a { color: #022c22 !important; }
+body.light-mode .log_in a:hover { background: rgba(16, 185, 129, 0.15) !important; }
+
+body.light-mode .skills { background: #d8f2e6 !important; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03) !important; }
+body.light-mode .skill_box { 
+    background: #ecfdf5 !important; 
+    border: 1px solid #a7f3d0 !important; 
+    box-shadow: none !important; 
+    backdrop-filter: none !important; 
+}
+
+/* 6. تعديل الفوتر (Footer) ليناسب الوضع المضيء */
+body.light-mode footer {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(10px);
+    border-top: 1px solid #d1fae5;
+}
+body.light-mode footer p, 
+body.light-mode footer span, 
+body.light-mode footer a { color: #022c22 !important; }
+
+body.light-mode .socialContainer { background-color: #ecfdf5 !important; border: 1px solid #a7f3d0; }
+body.light-mode .socialContainer svg { fill: #065f46 !important; }
