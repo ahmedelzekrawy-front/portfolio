@@ -107,3 +107,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+// تفعيل زرار الصعود للأعلى بنعومة وسرعة
+  const scrollBtnClick = document.querySelector("#scrollTopBtn a");
+  
+  if (scrollBtnClick) {
+    scrollBtnClick.addEventListener("click", function (e) {
+      e.preventDefault(); // السطر ده بيمنع التقطيع وبيلغي حركة الـ HTML الافتراضية
+
+      // الطلوع لفوق بنعومة
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
