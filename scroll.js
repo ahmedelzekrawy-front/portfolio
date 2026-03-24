@@ -48,3 +48,62 @@ function updateFooterDate() {
         dateElement.innerText = now.toLocaleDateString('en-GB'); 
     }
 }
+/* --- تشغيل الماوس الجديد --- */
+document.addEventListener("DOMContentLoaded", () => {
+    const cursor = document.querySelector(".cursor");
+    const follower = document.querySelector(".cursor-follower");
+
+    if (!cursor || !follower) return;
+
+    let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
+
+    document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX; mouseY = e.clientY;
+        cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+    });
+
+    function animateFollower() {
+        followerX += (mouseX - followerX) * 0.15;
+        followerY += (mouseY - followerY) * 0.15;
+        follower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%)`;
+        requestAnimationFrame(animateFollower);
+    }
+    animateFollower();
+
+    document.querySelectorAll("a, button, .socialContainer").forEach(el => {
+        el.addEventListener("mouseenter", () => { cursor.classList.add("active"); follower.classList.add("active"); });
+        el.addEventListener("mouseleave", () => { cursor.classList.remove("active"); follower.classList.remove("active"); });
+    });
+
+   
+});
+
+/* --- Dark/Light Mode Toggle (Refactored for Switch) --- */
+document.addEventListener("DOMContentLoaded", () => {
+    // نجلب الـ Input checkbox الجديد
+    const themeToggleInput = document.getElementById("themeToggleInput");
+    const body = document.body;
+
+    // 1. فحص هل المستخدم كان مختار الوضع المضيء؟
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        if (themeToggleInput) {
+            themeToggleInput.checked = true; // نفعّل الـ Switch
+        }
+    }
+
+    // 2. لما الـ Switch يتغير (change)
+    if (themeToggleInput) {
+        themeToggleInput.addEventListener("change", () => {
+            // لو الـ checkbox متشيك (يعني رايح للـ Light)
+            if (themeToggleInput.checked) {
+                body.classList.add("light-mode");
+                localStorage.setItem("theme", "light");
+            } else {
+                // لو مش متشيك (راجع للـ Dark)
+                body.classList.remove("light-mode");
+                localStorage.setItem("theme", "dark");
+            }
+        });
+    }
+});
