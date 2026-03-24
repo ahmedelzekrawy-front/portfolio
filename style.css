@@ -154,32 +154,55 @@ nav p {
   border-radius: 30px;
   padding: 10px 15px;
   display: inline-block;
-  opacity: 0;
-  transform: translateY(70px);
-  animation: slideUp 0.4s ease forwards;
+  opacity: 0; /* يبدأ مختفي تماماً */
+  transform: translateY(70px); /* يبدأ من أسفل */
+  animation: slideUp 0.5s ease-out forwards; /* مدة الحركة نفسها */
 }
+
 
 .log_in a:nth-child(1) { animation-delay: 1.2s; }
 .log_in a:nth-child(2) { animation-delay: 1.4s; }
-
 .log_in a span {
   position: relative;
 }
 
+/* 1. التأكد من الحالة الابتدائية للزرارين (مختفي وتحت) */
+
+/* 2. تحكم دقيق في ترتيب الظهور */
+
+/* زرار Login - يظهر أول واحد فيهم */
+.log_in a:nth-of-type(1) {
+  animation-delay: 0.8s; /* يبدأ بعد 0.8 ثانية من تحميل الصفحة */
+}
+
+/* زرار Sign up - لن يبدأ إلا بعد ظهور الزرار الأول */
+.log_in a:nth-of-type(2) {
+  animation-delay: 1.3s; /* فرق نصف ثانية كاملة عن الأول لضمان الترتيب */
+}
+
+/* تأكد من وجود الـ keyframes في ملفك */
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* تأثير الوقوف بالماوس على الزرارين */
+.log_in a:hover {
+  background: rgba(34, 211, 238, 0.09); /* نفس درجة الشفافية اللي عندك */
+  backdrop-filter: blur(10px);
+}
+
+/* الخط الأخضر اللي بيظهر تحت الكلمة */
 .log_in a span::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -5px;
+  bottom: -2px; /* تظبيط مكان الخط */
   width: 0;
   height: 2px;
   background-color: #10b981;
   transition: width 0.3s ease;
-}
-
-.log_in a:hover {
-  background: #22d3ee17;
-  backdrop-filter: blur(10px);
 }
 
 .log_in a:hover span::after {
@@ -924,6 +947,26 @@ body.light-mode footer {
 body.light-mode footer p, 
 body.light-mode footer span, 
 body.light-mode footer a { color: #022c22 !important; }
+body.light-mode .socialContainer {
+    background-color: #ecfdf5 !important; 
+    border: 1px solid #a7f3d0 !important;
+}
+/* حل مشكلة أيقونات التواصل في الوضع المضيء */
+body.light-mode .socialContainer {
+    background-color: #ecfdf5 !important;
+    border: 1px solid #a7f3d0 !important;
+}
 
-body.light-mode .socialContainer { background-color: #ecfdf5 !important; border: 1px solid #a7f3d0; }
-body.light-mode .socialContainer svg { fill: #065f46 !important; }
+/* السطر ده هو اللي هيلون الأيقونة نفسها باللون الأخضر الغامق */
+body.light-mode .socialContainer svg path {
+    fill: #065f46 !important;
+}
+
+/* تأثير الـ Hover في اللايت مود عشان تبقى احترافية */
+body.light-mode .socialContainer:hover {
+    background-color: #10b981 !important;
+}
+
+body.light-mode .socialContainer:hover svg path {
+    fill: #ffffff !important; /* لما تقف عليها بالماوس تتحول لبيض */
+}
